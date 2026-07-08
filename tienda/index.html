@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Conocents — Suplementos, Ropa y Equipo Deportivo</title>
+
+<meta name="description" content="Tienda de suplementos, ropa deportiva y equipo de gimnasio. Envíos a Sonora y toda la República Mexicana.">
+<meta name="keywords" content="suplementos, ropa deportiva, gimnasio, equipo deportivo, proteína, creatina, Nogales, Sonora">
+<meta name="author" content="Conocents">
+
+<link rel="icon" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+ 
+<nav>
+  <div class="logo">CONO<span>CENTS</span></div>
+  <ul class="nav-links">
+    <li><a href="#catalogo"class="move" >Productos</a></li>
+    <li><a href="#contacto" class="move">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+  
+   <button class="cart-btn" onclick="toggleCart()">
+  <img src="img/carrito.png" class="cart-icon" alt="Carrito">
+
+  <span class="cart-count" id="cartCount">0</span>
+</button>
+  </div>
+ 
+</nav>
+
+<!-- HERO -->
+
+
+  
+<section class="hero" style="background-image: url('img/logo.png');">
+
+
+
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num" id="statProducts">0</div><div class="stat-label">Productos</div></div>
+  <div class="stat"><div class="stat-num">MEX</div><div class="stat-label">Envío a todo Mexico</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Garantía de calidad</div></div>
+</div>
+
+<!-- CATALOG -->
+<section class="catalog" id="catalogo">
+  <div class="catalog-header">
+    <div>
+      <div style="font-size:0.75rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Catálogo</div>
+      <div class="catalog-title">NUESTROS <span>PRODUCTOS</span></div>
+    </div>
+    <div class="filters" id="filters">
+      <button class="filter-btn active" onclick="filterProducts('todos', this)">Todos</button>
+    </div>
+  </div>
+  <div class="products-grid" id="productsGrid">
+    <div class="no-products">
+      <p>Aún no hay productos.</p>
+      <p style="font-size:0.85rem;">Haz clic en <strong style="color:var(--accent)">+ Agregar producto</strong> para comenzar.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="handleCartClick(event)">
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-head">
+      <h2>CARRITO</h2>
+      <button class="close-btn" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart">
+        <p style="font-size:2rem">🛒</p>
+        <p>Tu carrito está vacío</p>
+        <p style="font-size:0.8rem">Agrega productos para comenzar</p>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-price" id="cartTotal">$0</span>
+      </div>
+      <button class="checkout-btn" onclick="checkout()">PEDIR POR WHATSAPP 💬</button>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/526311234567" target="_blank" class="wa-float" title="Contáctanos por WhatsApp">💬</a>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div>
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:var(--accent); margin-bottom:4px;">CONOCENTS</div>
+    <div>Nogales, Sonora · Envíos a toda la República</div>
+  </div>
+  <div style="text-align:right">
+    <div>WhatsApp: <strong>(631) 123-4567</strong></div>
+    <div>Instagram: <strong>@conocents</strong></div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
