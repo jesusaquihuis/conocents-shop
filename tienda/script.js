@@ -10,16 +10,7 @@ let products = [
     desc: "Camiseta negra de corte cómodo para entrenamiento o uso diario.",
     badge: "100% ALOGODON"
   },
-  {
-    id: 2,
-    name: "Cuerda para Saltar",
-    price: 199,
-    oldPrice: 249,
-    category: "Accesorios",
-    images: ["img/cuerda.png"],
-    desc: "Cuerda ligera para cardio, entrenamiento funcional y gimnasio.",
-    badge: "100% ALOGODON"
-  }
+  
 ];
 
 let cart = JSON.parse(localStorage.getItem('conocents_cart') || '[]');
