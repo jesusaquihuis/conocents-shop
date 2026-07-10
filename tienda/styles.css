@@ -1,3 +1,6 @@
+:root {
+  --accent: rgb(7, 121, 173);
+}
 html,
 body {
   background-color: #000000;
