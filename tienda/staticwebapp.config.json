@@ -1,0 +1,22 @@
+{
+  "routes": [
+    {
+      "route": "/admin.html",
+      "allowedRoles": ["administrador"]
+    },
+    {
+      "route": "/api/admin/*",
+      "allowedRoles": ["administrador"]
+    },
+    {
+      "route": "/api/products",
+      "allowedRoles": ["anonymous", "authenticated"]
+    }
+  ],
+  "responseOverrides": {
+    "401": {
+      "redirect": "/.auth/login/aad?post_login_redirect_uri=/admin.html",
+      "statusCode": 302
+    }
+  }
+}
