@@ -1,19 +1,21 @@
 // ── DATA ──────────────────────────────────────────
-let products = [
-  {
-    id: 1,
-    name: "Camiseta Negra Oversize",
-    price: 399,
-    oldPrice: 499,
-    category: "Camisetas",
-    images: ["img/camiseta1.png", "img/mano1.png"],
-    desc: "Camiseta negra de corte cómodo para entrenamiento o uso diario.",
-    badge: "100% ALOGODON"
-  },
-  
-];
+// Los productos ahora vienen de la base de datos vía la API,
+// en vez de estar escritos a mano aquí.
+let products = [];
 
 let cart = JSON.parse(localStorage.getItem('conocents_cart') || '[]');
+
+async function loadProducts() {
+  try {
+    const res = await fetch('/api/products');
+    products = await res.json();
+  } catch (err) {
+    console.error('No se pudieron cargar los productos', err);
+    products = [];
+  }
+  updateFilters();
+  renderProducts();
+}
 
 
 
@@ -124,11 +126,6 @@ function filterProducts(cat, btn) {
 
 
 
-function saveProducts() {
-  localStorage.setItem('conocents_products', JSON.stringify(products));
-}
-
-
 // ── CART ──────────────────────────────────────────
 function addToCart(id) {
   const product = products.find(p => p.id === id);
@@ -224,6 +221,5 @@ function showToast(msg) {
 }
 
 // ── INIT ──────────────────────────────────────────
-updateFilters();
-renderProducts();
+loadProducts();
 updateCartCount();
