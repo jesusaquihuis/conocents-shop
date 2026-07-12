@@ -70,9 +70,32 @@ async function saveProduct() {
   });
 
   if (!res.ok) {
-    alert('Error al guardar el producto');
-    return;
+  const responseText = await res.text();
+
+  let errorMessage = responseText;
+
+  try {
+    const data = JSON.parse(responseText);
+
+    errorMessage =
+      data.detail ||
+      data.error ||
+      data.message ||
+      responseText;
+  } catch {
+    // La respuesta no era JSON.
   }
+
+  console.error("Error HTTP:", res.status, errorMessage);
+
+  alert(
+    `Error al guardar el producto\n` +
+    `HTTP ${res.status}\n` +
+    `${errorMessage}`
+  );
+
+  return;
+}
 
   resetForm();
   loadProducts();
