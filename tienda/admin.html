@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard | Conocents</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+  <header class="admin-header">
+    <div>
+      <a href="index.html" class="brand">
+        CONO<span>CENTS</span>
+      </a>
+
+      <p>Administración de productos</p>
+    </div>
+
+    <div class="header-actions">
+      <a href="index.html" class="secondary-button">
+        Ver tienda
+      </a>
+
+      <a
+        href="/.auth/logout?post_logout_redirect_uri=/"
+        class="logout-button"
+      >
+        Cerrar sesión
+      </a>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="dashboard-summary">
+      <article class="summary-card">
+        <span>Productos registrados</span>
+        <strong id="totalProducts">0</strong>
+      </article>
+
+      <article class="summary-card">
+        <span>Estado del API</span>
+        <strong id="apiStatus">Comprobando...</strong>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel form-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">Catálogo</span>
+            <h1 id="formTitle">Agregar producto</h1>
+          </div>
+        </div>
+
+        <form id="productForm">
+          <input type="hidden" id="editId">
+
+          <div class="field">
+            <label for="name">Nombre del producto</label>
+            <input
+              type="text"
+              id="name"
+              maxlength="150"
+              placeholder="Ejemplo: Camiseta negra oversize"
+              required
+            >
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="price">Precio actual</label>
+              <input
+                type="number"
+                id="price"
+                min="0"
+                step="0.01"
+                placeholder="399"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="oldPrice">Precio anterior</label>
+              <input
+                type="number"
+                id="oldPrice"
+                min="0"
+                step="0.01"
+                placeholder="499"
+              >
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="category">Categoría</label>
+              <input
+                type="text"
+                id="category"
+                maxlength="80"
+                placeholder="Camisetas"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="badge">Etiqueta</label>
+              <input
+                type="text"
+                id="badge"
+                maxlength="80"
+                placeholder="Nuevo"
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="description">Descripción</label>
+            <textarea
+              id="description"
+              maxlength="500"
+              rows="4"
+              placeholder="Descripción breve del producto"
+            ></textarea>
+          </div>
+
+          <div class="field">
+            <label for="images">Imágenes</label>
+            <textarea
+              id="images"
+              rows="4"
+              placeholder="img/camiseta1.png&#10;img/camiseta2.png"
+            ></textarea>
+
+            <small>
+              Escribe una dirección de imagen por línea.
+            </small>
+          </div>
+
+          <label class="checkbox-field">
+            <input type="checkbox" id="isActive" checked>
+            <span>Producto visible en la tienda</span>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" id="saveButton" class="primary-button">
+              Guardar producto
+            </button>
+
+            <button
+              type="button"
+              id="cancelButton"
+              class="secondary-button hidden"
+            >
+              Cancelar edición
+            </button>
+          </div>
+        </form>
+      </article>
+
+      <article class="panel products-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">Inventario</span>
+            <h2>Productos</h2>
+          </div>
+
+          <button id="refreshButton" class="secondary-button" type="button">
+            Actualizar
+          </button>
+        </div>
+
+        <div id="loadingMessage" class="state-message">
+          Cargando productos...
+        </div>
+
+        <div id="emptyMessage" class="state-message hidden">
+          Todavía no hay productos registrados.
+        </div>
+
+        <div class="table-wrapper">
+          <table id="productsTable" class="hidden">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody id="productsTableBody"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div id="toast" class="admin-toast" role="status"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
