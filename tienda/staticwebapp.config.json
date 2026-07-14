@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "route": "/admin.html",
+      "allowedRoles": ["administrator"]
+    },
+    {
+      "route": "/api/products",
+      "methods": ["POST"],
+      "allowedRoles": ["administrator"]
+    },
+    {
+      "route": "/api/products/*",
+      "methods": ["PUT", "DELETE"],
+      "allowedRoles": ["administrator"]
+    },
+    {
+      "route": "/logout",
+      "redirect": "/.auth/logout"
+    }
+  ],
+  "responseOverrides": {
+    "401": {
+      "redirect": "/.auth/login/github?post_login_redirect_uri=.referrer",
+      "statusCode": 302
+    }
+  }
+}
