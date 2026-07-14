@@ -7,12 +7,19 @@ let cart = JSON.parse(localStorage.getItem('conocents_cart') || '[]');
 
 async function loadProducts() {
   try {
-    const res = await fetch('/api/products');
-    products = await res.json();
-  } catch (err) {
-    console.error('No se pudieron cargar los productos', err);
+    const response = await fetch("/api/products");
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    products = Array.isArray(data) ? data : [];
+  } catch (error) {
+    console.error("No se pudieron cargar los productos:", error);
     products = [];
   }
+
   updateFilters();
   renderProducts();
 }
